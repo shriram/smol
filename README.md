@@ -5,12 +5,13 @@ third edition of [PLAI](https://plai.org/).
 
 Install this package using the Racket packet manager:
 
-* From DrRacket, go to File | Install Package, and enter the URL for
-  this repository.
+* From DrRacket, go to File | Install Package, and enter the URL
+
+  `https://github.com/shriram/smol.git`
 
 * At the command command line, run
 
-  raco pkg install <URL for this repository>
+  `raco pkg install https://github.com/shriram/smol.git`
 
   Make sure your paths are set correctly so that you're installing the
   package for the right version!
