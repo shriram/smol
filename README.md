@@ -32,6 +32,15 @@ Language"). Then type
 ```
 and run your program. You should see the output `3` in the REPL.
 
+## Documentation
+
+You can read documentation in the Racket documentation for your
+install (not on
+[the Racket Web site](https://docs.racket-lang.org/). In DrRacket, go
+to Help | Racket Documentation. This will open a Web browser
+window. In that window, you can either type `smol` or scroll down to
+look for ``SMoL'' on that page.
+
 ## Updating
 
 If you're asked to _update_ your package, you can do it through
