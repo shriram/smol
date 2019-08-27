@@ -39,7 +39,7 @@ You can read documentation in the Racket documentation for your
 [the Racket Web site](https://docs.racket-lang.org/)). In DrRacket, go
 to Help | Racket Documentation. This will open a Web browser
 window. In that window, you can either type `smol` or scroll down to
-look for ``SMoL'' on that page.
+look for “SMoL” on that page.
 
 ## Updating
 
