@@ -19,11 +19,11 @@ also strips these languages to their essence. This aids understanding
 by eliminating features that are either not universal or are only
 incidental to understanding the core.
 
-@defmodulelang[smol/fun]
-
-@(local-table-of-contents)
+@(local-table-of-contents #:style 'immediate-only)
 
 @section[#:tag "smol-fun"]{The @code{smol/fun} Language}
+
+@defmodulelang[smol/fun]
 
 @subsection[#:tag "definitions"]{Definitions}
 
@@ -63,7 +63,7 @@ into it (starting from @code{0}).
 }
 
 @deftogether[(
-@defproc[(pair (elem-1 Any) (elem-2 Any)) Vec]
+@defproc[(pair (elem-l Any) (elem-r Any)) Vec]
 @defproc[(left (expr Pair)) Any]
 @defproc[(right (expr Pair)) Any]
 @defproc[(pair? (expr Any)) Boolean]
@@ -135,6 +135,38 @@ The constructs @code{trace}, @code{untrace},
 	 @code{string=?}
 are all inherited directly from Racket and behave exactly as they do
 there.
+
+@section[#:tag "smol-state"]{The @code{smol/state} Language}
+
+@defmodulelang[smol/state]
+
+The @code{smol/state} language includes all of
+@secref["smol-fun"], and the following in addition.
+
+The @code{set!} construct from Racket, which changes the values that
+variables are bound to.
+
+The @code{begin} construct from Racket is also available, to sequence
+operations.
+
+@deftogether[(
+@defproc[(mvec (elem Any) ...) Vec]
+@defproc[(vset! (vec Vec) (idx Num) (val Any)) Void]
+)]{
+@code{mvec} creates @emph{mutable} vectors, and @code{vset!} modifies
+them. @code{vset!} cannot modify an immutable vector.
+}
+
+@deftogether[(
+@defproc[(mpair (elem-l Any) (elem-r Any)) Vec]
+@defproc[(set-left! (expr Pair) (val Any)) Void]
+@defproc[(set-right! (expr Pair) (val Any)) Void]
+)]{
+@code{mpair} creates @emph{mutable} pairs (which are just two-element
+mutable vectors), and @code{set-left!} and @code{set-right!} modify
+them. The elements are accessed using @code{left} and @code{right}, as
+before.
+}
 
 @section[#:tag "compat"]{Compatible Use in Racket}
 
