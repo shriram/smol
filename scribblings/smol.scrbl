@@ -120,3 +120,43 @@ The constructs @code{trace}, @code{untrace},
 	 @code{string=?}
 are all inherited directly from Racket and behave exactly as they do
 there.
+
+@section[#:tag "compat"]{Compatible Use in Racket}
+
+If you want to program in some other language (typically
+@code{racket}) and would like to use constructs defined in SMoL, you
+can use the @code{compat} languages that are defined for each SMoL
+level by appending @code{compat} to the language name. For instance,
+@code{smol/fun/compat} is the compatibility layer for @code{smol/fun}.
+
+As an example, these two programs behave exactly the same way:
+@codeblock{
+#lang smol/fun
+
+(defvar x 3)
+(++ "x" (spy (++ "y" "z" (++))))
+}
+and
+@codeblock{
+#lang racket
+
+(require smol/fun/compat)
+
+(defvar x 3)
+(++ "x" (spy (++ "y" "z" (++))))
+}
+but the latter gives you access to all of the rest of Racket as
+well. You could use compatibility layer because you find some of these
+constructs more familiar, comfortable, or convenient than their
+counterparts in Racket, but otherwise want to use Racket's more
+powerful mechanisms (such as its macro system).
+
+Warning: The @emph{intent} is that using this compatibility layer will
+leave the behavior of programs unchanged. However, if you import these
+bindings into a language with significantly different behavior than
+Racket, what they do is undefined. It's safe to think of this as a
+@emph{Racket} compatibility layer; it does not (nor can it) attempt to
+preserve the semantics in all other languages. For example, @code{spy}
+depends on being able to generate terminal output, but if the host
+language forbids any output, then @code{spy} may also be compromised,
+depending on how the host language has been implemented.
