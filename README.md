@@ -2,7 +2,7 @@
 
 This is the "smol" package for [Racket](https://racket-lang.org/).
 
-SMoL is the _S_tandard _M_odel _o_f _L_anguages, a concept introduced
+SMoL is the Standard Model of Languages, a concept introduced
 in the third edition of [PLAI](https://plai.org/).
 
 ## Installation
@@ -57,5 +57,5 @@ In either case, you should see a Checksum that looks something like
 checksum right after "Latest commit" earlier on this page. That tells
 you that you have the most recent version of the package; otherwise,
 it needs updating. Specifically, the checksum tells you
-(which version)[https://github.com/shriram/smol/commits/master]
+[which version](https://github.com/shriram/smol/commits/master)
 you currently have installed.
