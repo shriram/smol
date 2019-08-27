@@ -51,19 +51,10 @@ Booleans. The language also permits, but does not provide useful
 operations to work with, list constants, vector constants, and more
 exotic quoted forms. (If you don't know what these are, ignore them.)
 
-@defform[
-(if test-expr then-expr else-expr)
-]{
-The @code{if} construct produces the value of either
-@code{then-expr} or @code{else-expr}, depending on how
-@code{test-expr} evaluates. In SMoL, only @code{false} is false;
-all other values are true.
-}
-
 @deftogether[(
-@defform[(ivec elem ...)]
-@defform[(vlen vec-expr)]
-@defform[(vref vec-expr idx-expr)]
+@defproc[(ivec (elem Any) ...) Vec]
+@defproc[(vlen (expr Vec)) Number]
+@defproc[(vref (vec-expr Vec) (idx-expr Number)) Any]
 )]{
 The @code{ivec} operation builds an @emph{immutable} vector of the
 elements in @code{elem}. Vector elements need not be of the same
@@ -72,10 +63,10 @@ into it (starting from @code{0}).
 }
 
 @deftogether[(
-@defform[(pair elem-1 elem-2)]
-@defform[(left pair-expr)]
-@defform[(right pair-expr)]
-@defform[(pair? expr)]
+@defproc[(pair (elem-1 Any) (elem-2 Any)) Vec]
+@defproc[(left (expr Pair)) Any]
+@defproc[(right (expr Pair)) Any]
+@defproc[(pair? (expr Any)) Boolean]
 )]{
 @code{pair} is a special-case of @code{ivec}: it creates a
 two-element vector. @code{left} and @code{right} access the left
@@ -84,11 +75,35 @@ elements. @code{pair?} recognizes @emph{any} two-element vector, not
 only just those built using @code{pair}.
 }
 
-@defform[(++ str-expr ...)]{
+@defproc[(++ (s String) ...) String]{
 @code{++} concatenates any number of strings.
 }
 
-@subsection[#:tag "debugging"]{Debugging}
+@subsection[#:tag "debugging"]{Testing and Debugging}
+
+Testing and debugging are intertwined. The more tests you write, the
+less debugging work you will have to do. This is because tests
+@emph{localize} debugging: if @code{f} calls @code{g} calls @code{h}
+and the result of a call to @code{f} isn't what you expect, you have
+no idea where the problem might lie. But if you have good tests for
+some of these functions, then you have a fairly safe bet that the
+problem is in the ones for which you don't. The more robustly you
+test, the farther you push the boundary of trust, and the less effort
+you have to later spend debugging.
+
+The forms @code{test}, @code{test/pred}, and @code{test/exn} are all
+available from @code{plai}. SMoL adds
+
+@defform[
+(test/not result-expr not-expected-expr)
+]{
+This is just like @code{test}, except the sense of equality is
+inverted. Sometimes it's useful to write @emph{negative} tests: tests
+that say a particular behavior will @emph{not} happen. For instance,
+if you're testing scopes and have two variables with the same name but
+different values, it's expressive to say that a particular value
+(bound to the variable not in scope) will not show up.
+}
 
 @defform[
 (spy expr)
@@ -112,7 +127,7 @@ that have the same source term).
 The constructs @code{trace}, @code{untrace},
 	 @code{provide}, @code{all-defined-out},
          @code{let}, @code{let*}, @code{letrec},
-	 @code{and}, @code{or}, @code{not},
+	 @code{if}, @code{and}, @code{or}, @code{not},
 	 @code{eq?}, @code{equal?},
 	 @code{begin},
 	 @code{+}, @code{-}, @code{*}, @code{/},
