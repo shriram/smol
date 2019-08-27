@@ -168,6 +168,25 @@ them. The elements are accessed using @code{left} and @code{right}, as
 before.
 }
 
+@section[#:tag "smol-hof"]{The @code{smol/hof} Language}
+
+@defmodulelang[smol/hof]
+
+The @code{smol/hof} language includes all of
+@secref["smol-state"], and the following in addition from Racket:
+@itemlist[
+
+@item{the constructs @code{lambda} and @code{λ} (which is just an
+alias for @code{lambda}),}
+
+@item{the list generators, @code{cons}, @code{empty}, and @code{list},
+and}
+
+@item{the functions @code{map}, @code{filter}, @code{foldl}, and
+@code{foldr}.}
+
+]
+
 @section[#:tag "compat"]{Compatible Use in Racket}
 
 If you want to program in some other language (typically
