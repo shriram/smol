@@ -2,13 +2,6 @@
 
 (require [for-syntax syntax/parse])
 
-#|
-(provide (except-out (all-from-out racket)
-                     #%module-begin)
-         (rename-out [module-begin #%module-begin])
-         now)
- |#
-
 (require [only-in plai test test/pred test/exn print-only-errors equal~?])
 
 (require [only-in racket/trace trace untrace])
