@@ -1,7 +1,5 @@
 #lang racket
 
-(require [for-syntax syntax/parse])
-
 (require smol/fun/semantics)
 
 (provide [all-from-out smol/fun/semantics])
