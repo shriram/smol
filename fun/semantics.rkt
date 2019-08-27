@@ -9,7 +9,7 @@
 
 (provide #%module-begin #%top-interaction
 	 #%datum #%app #%top quote
-	 provide all-defined-out
+	 require provide all-defined-out
          defvar deffun
          let let* letrec
 	 if and or not true false eq? equal?
