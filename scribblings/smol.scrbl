@@ -96,7 +96,9 @@ test, the farther you push the boundary of trust, and the less effort
 you have to later spend debugging.
 
 The forms @code{test}, @code{test/pred}, and @code{test/exn} are all
-available from @code{plai}. SMoL adds
+available from @code{plai}. Also provided is
+@code{print-only-errors}, which is useful to suppress good news. To these,
+SMoL adds
 
 @defform[
 (test/not result-expr not-expected-expr)
