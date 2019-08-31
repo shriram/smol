@@ -1,8 +1,9 @@
 #lang racket
 
-(require smol/state/semantics)
+(require [except-in smol/state/semantics #%app])
 
-(provide [all-from-out smol/state/semantics])
+(provide [all-from-out smol/state/semantics]
+	 #%app)
 
 (provide lambda λ)
 (provide map filter foldl foldr)

@@ -79,6 +79,10 @@ only just those built using @code{pair}.
 @code{++} concatenates any number of strings.
 }
 
+@subsection{Applications}
+
+Functions may not be passed as parameters.
+
 @subsection[#:tag "debugging"]{Testing and Debugging}
 
 Testing and debugging are intertwined. The more tests you write, the
@@ -168,12 +172,17 @@ them. The elements are accessed using @code{left} and @code{right}, as
 before.
 }
 
+@subsection{Applications}
+
+Functions may not be passed as parameters.
+
 @section[#:tag "smol-hof"]{The @code{smol/hof} Language}
 
 @defmodulelang[smol/hof]
 
 The @code{smol/hof} language includes all of
-@secref["smol-state"], and the following in addition from Racket:
+@secref["smol-state"] (with the exception of @secref["smol-hof-app"],
+and the following in addition from Racket:
 @itemlist[
 
 @item{the constructs @code{lambda} and @code{λ} (which is just an
@@ -186,6 +195,11 @@ and}
 @code{foldr}.}
 
 ]
+
+@subsection[#:tag "smol-hof-app"]{Applications}
+
+Functions may be passed as parameters. This is the main point of this
+language.
 
 @section[#:tag "compat"]{Compatible Use in Racket}
 
@@ -216,6 +230,12 @@ well. You could use compatibility layer because you find some of these
 constructs more familiar, comfortable, or convenient than their
 counterparts in Racket, but otherwise want to use Racket's more
 powerful mechanisms (such as its macro system).
+
+The compatibility layers provide @emph{only} the @emph{names} provided
+by each of the languages; they do not provide any of the language
+restrictions. Thus, for instance, if you import
+@code{smol/fun/compat}, you can still use higher-order functions in
+Racket as you normally would.
 
 Warning: The @emph{intent} is that using this compatibility layer will
 leave the behavior of programs unchanged. However, if you import these

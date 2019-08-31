@@ -8,7 +8,7 @@
 (provide [all-from-out racket/trace])
 
 (provide #%module-begin #%top-interaction
-	 #%datum #%app #%top quote
+	 #%datum #%top quote
 	 require provide all-defined-out
          defvar deffun
          let let* letrec
@@ -21,6 +21,7 @@
 	 ++ string=?
          spy)
 (provide [except-out (all-from-out plai) equal~?]
+	 [rename-out (my-app #%app)]
          test/not)
 
 (define ++ string-append)
@@ -43,6 +44,16 @@
                       (quote the-col)
                       val)
               val))))])))
+
+(define-syntax my-app
+  (syntax-rules ()
+    [(_ fun arg ...)
+     (#%app fun
+	    (let ([v arg])
+	      (if (procedure? v)
+		  (raise-syntax-error 'application "can't pass a function as an argument" #'arg)
+		  v))
+	    ...)]))
 
 (define-syntax (defvar stx)
   (syntax-parse stx

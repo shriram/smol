@@ -31,3 +31,10 @@
 (defvar w (mvec 1 2 3))
 (vset! w 2 4)
 (test w '#(1 2 4))
+
+(deffun (nested-i x)
+  (deffun (nested-j y)
+    (+ y 1))
+  (nested-j (+ x 1)))
+
+(test (nested-i 5) 7)

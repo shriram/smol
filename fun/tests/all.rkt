@@ -43,3 +43,9 @@
 (test (len 0) 0)
 (test (len l) 3)
 
+(deffun (nested-i x)
+  (deffun (nested-j y)
+    (+ y 1))
+  (nested-j (+ x 1)))
+
+(test (nested-i 5) 7)
