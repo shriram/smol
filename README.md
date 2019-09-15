@@ -68,3 +68,15 @@ you that you have the most recent version of the package; otherwise,
 it needs updating. Specifically, the checksum tells you
 [which version](https://github.com/shriram/smol/commits/master)
 you currently have installed.
+
+## Running from the Command Line
+
+You can run files normally using the `racket` binary.
+
+If you want a REPL in a SMoL language, say `smol/fun`, use this
+command line:
+```
+racket -l smol/fun/semantics -i
+```
+(Replace `fun` with whatever other language you prefer.) This will
+create an (interactive) REPL in that language.
