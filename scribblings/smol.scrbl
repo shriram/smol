@@ -79,7 +79,7 @@ only just those built using @code{pair}.
 @code{++} concatenates any number of strings.
 }
 
-@subsection{Applications}
+@subsection[#:tag "smol-fun-app"]{Applications}
 
 Functions may not be passed as parameters.
 
@@ -176,7 +176,7 @@ them. The elements are accessed using @code{left} and @code{right}, as
 before.
 }
 
-@subsection{Applications}
+@subsection[#:tag "smol-state-app"]{Applications}
 
 Functions may not be passed as parameters.
 
