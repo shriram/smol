@@ -205,6 +205,31 @@ and}
 Functions may be passed as parameters. This is the main point of this
 language.
 
+@section[#:tag "smol/dyn-scope-is-bad"]{The @code{smol/dyn-scope-is-bad} Language}
+
+@defmodulelang[smol/dyn-scope-is-bad]
+
+@centered{
+@bold{Do not use this language!}
+}
+
+In this language, we get to explore @emph{dynamic scope} (at least one
+variant of it). The language's name is intentionally chosen to pass
+value judgment on this feature.
+
+This language currently provides dynamic scoping behavior for the
+binding forms @code{defvar}, @code{deffun}, @code{lambda}, @code{λ},
+and @code{let}. For now @code{let*} and @code{letrec} aren't
+present. The former is out of implementor laziness, but it's a useful
+puzzle to ponder is why @code{letrec} hasn't been provided.
+
+Observe that hovering over variables in DrRacket does not present
+binding arrows. This is as it should be.
+
+Finally, note that @secref["compat"] is going to produce very strange
+behavior in conjunction with Racket's own binding forms like
+@code{define}. Have fun.
+
 @section[#:tag "compat"]{Compatible Use in Racket}
 
 If you want to program in some other language (typically
