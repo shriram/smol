@@ -11,11 +11,13 @@
                      ;deffun
                      lambda λ
                      let
+                     set!
                      #%top])
 (provide defvar deffun)
 (provide [rename-out (dyn-λ λ)
                      (dyn-λ lambda)
-                     (dyn-let let)])
+                     (dyn-let let)
+                     (dyn-set! set!)])
 
 (define dvs (make-hasheq))
 
@@ -58,6 +60,11 @@
            (store 'var tmp)
            ...
            body ...)))))
+
+(define-syntax (dyn-set! stx)
+  (syntax-parse stx
+    ([_ var:id val:expr]
+     #'(store 'var val))))
 
 (provide (rename-out [handle-id #%top]))
 

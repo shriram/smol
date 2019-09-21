@@ -71,3 +71,12 @@
                    (even? (- n 1))))])
    (even? 10))
  true)
+
+; -----
+
+(defvar to-set-1 0)
+(set! to-set-1 5)
+(test to-set-1 5)
+
+((lambda () (set! to-set-1 6)))
+(test to-set-1 6)
