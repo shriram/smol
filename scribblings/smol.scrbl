@@ -230,6 +230,13 @@ Finally, note that @secref["compat"] is going to produce very strange
 behavior in conjunction with Racket's own binding forms like
 @code{define}. Have fun.
 
+@section[#:tag "smol/cc"]{The @code{smol/cc} Language}
+
+@defmodulelang[smol/cc]
+
+In this language we return to regular scope, building on the
+@code{smol/hof} language. Here we add @code{call/cc} and @code{let/cc}.
+
 @section[#:tag "compat"]{Compatible Use in Racket}
 
 If you want to program in some other language (typically
