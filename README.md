@@ -13,7 +13,7 @@ Install this package using the Racket packet manager:
 
   `https://github.com/shriram/smol.git`
 
-* At the command command line, run
+* At the command line, run
 
   `raco pkg install https://github.com/shriram/smol.git`
 
