@@ -24,6 +24,11 @@
 (provide [except-out (all-from-out plai) equal~?]
 	 [rename-out (my-app #%app)]
          test/not)
+; provide all the `provide` sub-forms
+; that seem to make sense
+(provide all-defined-out all-from-out rename-out
+         except-out prefix-out
+         combine-out protect-out)
 
 (define ++ string-append)
 
