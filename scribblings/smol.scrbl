@@ -35,11 +35,11 @@ Defines a new identifier, @code{id}, and binds it to the value of
 }
 
 @defform[
-(deffun (fun-id arg-id ...) def ... expr)
+(deffun (fun-id arg-id ...) def/expr ... expr)
 ]{
 The @code{fun-id} is the name of the function; the remaining
 @code{arg-id}s are its parameters. These are bound before evaluating
-@code{def}s and @code{expr}. @code{deffun} permits recursive
+@code{def/expr}s and @code{expr}. @code{deffun} permits recursive
 definitions.
 }
 
