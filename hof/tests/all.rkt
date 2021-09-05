@@ -17,3 +17,6 @@
   (nested-j (+ x 1)))
 
 (test (nested-i 5) 7)
+
+(test/pred (pair (lambda () 0) 0) (lambda (_) #t))
+(test/pred (mpair (lambda () 0) 0) (lambda (_) #t))
