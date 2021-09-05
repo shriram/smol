@@ -49,3 +49,6 @@
   (nested-j (+ x 1)))
 
 (test (nested-i 5) 7)
+
+(test/exn (left (ivec 1 2 3)) "pair")
+(test/exn (right (ivec 1 2 3)) "pair")

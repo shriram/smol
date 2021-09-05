@@ -2,7 +2,7 @@
 
 (require [for-syntax syntax/parse])
 
-(require [only-in plai test test/pred test/exn print-only-errors equal~?])
+(require [only-in plai test test/pred test/exn print-only-errors equal~? error])
 
 (require [only-in racket/trace trace untrace])
 (provide [all-from-out racket/trace])
@@ -82,6 +82,12 @@
 
 (define (pair a b)
   (ivec a b))
-(define (left p) (vref p 0))
-(define (right p) (vref p 1))
+(define (left p)
+  (unless (= (vlen p) 2)
+    (error 'left "argument must be a pair: ~a" p))
+  (vref p 0))
+(define (right p)
+  (unless (= (vlen p) 2)
+    (error 'right "argument must be a pair: ~a" p))
+  (vref p 1))
 (define (pair? v) (and (vector? v) (= (vlen v) 2)))
