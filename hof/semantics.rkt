@@ -7,4 +7,10 @@
 
 (provide lambda λ)
 (provide map filter foldl foldr)
-(provide cons empty list)
+(provide empty list)
+(provide (rename-out [checked-cons cons]))
+
+(define (checked-cons f r)
+  (unless (list? r)
+    (error 'cons "the second argument must be a list: ~a" r))
+  (cons f r))

@@ -20,3 +20,6 @@
 
 (test/pred (pair (lambda () 0) 0) (lambda (_) #t))
 (test/pred (mpair (lambda () 0) 0) (lambda (_) #t))
+
+(test/exn (cons 2 3) "list")
+(test (cons 2 '()) '(2))
