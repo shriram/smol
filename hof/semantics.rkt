@@ -5,6 +5,7 @@
 (provide [all-from-out smol/state/semantics]
 	 #%app)
 
+(provide letrec)
 (provide lambda λ)
 (provide map filter foldl foldr)
 (provide empty list)
