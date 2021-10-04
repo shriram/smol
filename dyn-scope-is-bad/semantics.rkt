@@ -18,7 +18,6 @@
 (provide [rename-out (dyn-λ λ)
                      (dyn-λ lambda)
                      (dyn-let let)
-                     (dyn-let letrec)
                      (dyn-set! set!)])
 
 (define dvs (make-hasheq))
