@@ -11,7 +11,7 @@
 	 #%datum #%top quote
 	 require provide all-defined-out
          defvar deffun
-         let let* letrec
+         let let*
 	 if and or not true false eq? equal?
 	 begin
          ivec vlen vref

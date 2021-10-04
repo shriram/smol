@@ -23,3 +23,11 @@
 
 (test/exn (cons 2 3) "list")
 (test (cons 2 '()) '(2))
+
+(test (letrec ([fact
+                (lambda (n)
+                  (if (zero? n)
+                      1
+                      (* n (fact (- n 1)))))])
+        (fact 5))
+      120)
