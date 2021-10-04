@@ -28,11 +28,11 @@
 
 (define (internal-fetch name)
   (hash-ref (dvs) (syntax->datum name)
-              (lambda ()
-                (raise-syntax-error
-                 (syntax->datum name)
-                 "unbound identifier"
-                 name))))
+            (lambda ()
+              (raise-syntax-error
+               (syntax->datum name)
+               "unbound identifier"
+               name))))
 
 (define (update name v)
   (define loc (internal-fetch name))
@@ -67,12 +67,7 @@
 (define-syntax (dyn-let stx)
   (syntax-parse stx
     ([_ ([var:id val:expr] ...) body:expr ...+]
-     (with-syntax ([(tmp ...)
-                    (generate-temporaries #'(var ...))])
-       #'(let ([tmp val] ...)
-           (store #'var tmp)
-           ...
-           body ...)))))
+     #'(dyn-app (dyn-λ (var ...) body ...) val ...))))
 
 (define-syntax (dyn-set! stx)
   (syntax-parse stx
