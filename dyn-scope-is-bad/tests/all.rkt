@@ -80,3 +80,12 @@
 
 ((lambda () (set! to-set-1 6)))
 (test to-set-1 6)
+
+; -----
+
+(test
+ (let* ([x 1]
+        [f (lambda () x)]
+        [x 2])
+   (f))
+ 2)
