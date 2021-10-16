@@ -32,9 +32,9 @@
 
 (test/not (let ([x 8] [y x]) x) 3)
 
-(defvar l (pair 'a (pair 'b (pair 'c 0))))
-(test (equal? l '#(a #(b #(c 0)))) true)
-(test (eq? l '#(a #(b #(c 0)))) false)
+(defvar l (pair "a" (pair "b" (pair "c" 0))))
+(test (equal? l #("a" #("b" #("c" 0)))) true)
+(test (eq? l #("a" #("b" #("c" 0)))) false)
 
 (deffun (len l)
   (if (not (pair? l))
