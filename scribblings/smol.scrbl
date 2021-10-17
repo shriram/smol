@@ -133,7 +133,7 @@ that have the same source term).
 
 The constructs @code{trace}, @code{untrace},
 	 @code{provide}, @code{all-defined-out},
-         @code{let}, @code{let*}, @code{letrec},
+         @code{let}, @code{let*},
 	 @code{if}, @code{and}, @code{or}, @code{not},
 	 @code{eq?}, @code{equal?},
 	 @code{begin},
@@ -190,7 +190,7 @@ The @code{smol/hof} language includes all of
 and the following in addition from Racket:
 @itemlist[
 
-@item{the constructs @code{lambda} and @code{λ} (which is just an
+@item{the constructs @code{letrec}, @code{lambda}, and @code{λ} (which is just an
 alias for @code{lambda}),}
 
 @item{the list generators, @code{cons}, @code{empty}, and @code{list},

@@ -2,18 +2,18 @@
 
 (print-only-errors #t)
 
-(defvar p (mpair 'a 'b))
-(test (left p) 'a)
-(test (right p) 'b)
+(defvar p (mpair "a" "b"))
+(test (left p) "a")
+(test (right p) "b")
 
-(set-left! p 'x)
-(set-right! p 'y)
-(test (left p) 'x)
-(test (right p) 'y)
+(set-left! p "x")
+(set-right! p "y")
+(test (left p) "x")
+(test (right p) "y")
 
 (test (vlen p) 2)
 (test (pair? p) true)
-(test (pair? (mvec 'g 'h)) true)
+(test (pair? (mvec "g" "h")) true)
 
 (defvar v 2)
 (test v 2)
@@ -30,7 +30,7 @@
 
 (defvar w (mvec 1 2 3))
 (vset! w 2 4)
-(test w '#(1 2 4))
+(test w #(1 2 4))
 
 (deffun (nested-i x)
   (deffun (nested-j y)

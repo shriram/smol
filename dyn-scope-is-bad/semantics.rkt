@@ -18,8 +18,8 @@
                      (dyn-λ lambda)
                      (dyn-let let)
                      (dyn-let letrec)
-                     (dyn-set! set!)
-                     (dyn-app #%app)])
+                     (dyn-app #%app)
+                     (dyn-set! set!)])
 
 (define dvs (make-parameter (make-hasheq)))
 

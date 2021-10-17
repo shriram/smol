@@ -8,7 +8,7 @@
 (provide [all-from-out racket/trace])
 
 (provide #%module-begin #%top-interaction
-	 #%datum #%top quote
+	 #%datum #%top
 	 require provide all-defined-out
          defvar deffun
          let let*
