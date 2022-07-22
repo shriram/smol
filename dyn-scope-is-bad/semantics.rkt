@@ -12,12 +12,15 @@
                      lambda λ
                      letrec
                      let
+                     let*
                      set!
                      #%top])
 (provide defvar deffun)
 (provide [rename-out (dyn-λ λ)
                      (dyn-λ lambda)
                      (dyn-let let)
+                     (dyn-let letrec)
+                     (dyn-let* let*)
                      (dyn-set! set!)])
 
 (define dvs (make-hasheq))
@@ -61,6 +64,14 @@
            (store 'var tmp)
            ...
            body ...)))))
+
+(define-syntax dyn-let*
+  (syntax-rules ()
+    [(dyn-let* () body ...)
+     (dyn-let () body ...)]
+    [(dyn-let* (fst rest ...) body ...)
+     (dyn-let (fst)
+       (dyn-let* (rest ...) body ...))]))
 
 (define-syntax (dyn-set! stx)
   (syntax-parse stx
