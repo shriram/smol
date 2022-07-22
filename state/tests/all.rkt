@@ -29,7 +29,7 @@
 (test z (pair 1 2))
 
 (defvar w (mvec 1 2 3))
-(vset! w 2 4)
+(vec-set! w 2 4)
 (test w #(1 2 4))
 
 (deffun (nested-i x)
