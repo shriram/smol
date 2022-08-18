@@ -10,6 +10,7 @@
                      lambda λ
                      letrec
                      let
+                     let*
                      set!
                      #%top
                      #%app])
@@ -17,6 +18,7 @@
 (provide [rename-out (dyn-λ λ)
                      (dyn-λ lambda)
                      (dyn-let let)
+                     (dyn-let let*)
                      (dyn-let letrec)
                      (dyn-app #%app)
                      (dyn-set! set!)])
@@ -65,6 +67,14 @@
   (syntax-parse stx
     ([_ ([var:id val:expr] ...) body:expr ...+]
      #'(dyn-app (dyn-λ (var ...) body ...) val ...))))
+
+(define-syntax dyn-let*
+  (syntax-rules ()
+    [(dyn-let* () body ...)
+     (dyn-let () body ...)]
+    [(dyn-let* (fst rest ...) body ...)
+     (dyn-let (fst)
+       (dyn-let* (rest ...) body ...))]))
 
 (define-syntax (dyn-set! stx)
   (syntax-parse stx

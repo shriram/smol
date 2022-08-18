@@ -14,7 +14,7 @@
          let let*
 	 if and or not true false eq? equal?
 	 begin
-         ivec vlen vref
+         ivec vlen vec-ref
          pair left right pair?
 	 + - * /
 	 zero?
@@ -78,16 +78,16 @@
 
 (define ivec vector-immutable)
 (define vlen vector-length)
-(define vref vector-ref)
+(define vec-ref vector-ref)
 
 (define (pair a b)
   (ivec a b))
 (define (left p)
   (unless (= (vlen p) 2)
     (error 'left "argument must be a pair: ~a" p))
-  (vref p 0))
+  (vec-ref p 0))
 (define (right p)
   (unless (= (vlen p) 2)
     (error 'right "argument must be a pair: ~a" p))
-  (vref p 1))
+  (vec-ref p 1))
 (define (pair? v) (and (vector? v) (= (vlen v) 2)))

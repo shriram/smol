@@ -55,11 +55,11 @@ exotic quoted forms. (If you don't know what these are, ignore them.)
 @deftogether[(
 @defproc[(ivec (elem Any) ...) Vec]
 @defproc[(vlen (expr Vec)) Number]
-@defproc[(vref (vec-expr Vec) (idx-expr Number)) Any]
+@defproc[(vec-ref (vec-expr Vec) (idx-expr Number)) Any]
 )]{
 The @code{ivec} operation builds an @emph{immutable} vector of the
 elements in @code{elem}. Vector elements need not be of the same
-type. @code{vlen} computes its length, while @code{vref} indexes
+type. @code{vlen} computes its length, while @code{vec-ref} indexes
 into it (starting from @code{0}).
 }
 
@@ -160,10 +160,10 @@ operations.
 
 @deftogether[(
 @defproc[(mvec (elem Any) ...) Vec]
-@defproc[(vset! (vec Vec) (idx Num) (val Any)) Void]
+@defproc[(vec-set! (vec Vec) (idx Num) (val Any)) Void]
 )]{
-@code{mvec} creates @emph{mutable} vectors, and @code{vset!} modifies
-them. @code{vset!} cannot modify an immutable vector.
+@code{mvec} creates @emph{mutable} vectors, and @code{vec-set!} modifies
+them. @code{vec-set!} cannot modify an immutable vector.
 }
 
 @deftogether[(
