@@ -48,8 +48,8 @@
 (define-syntax (deffun stx)
   (syntax-parse stx
     [(_ (fname:id arg:id ...) body:expr ...+)
-     #'(store 'fname
-              (dyn-λ (arg ...) body ...))]))
+     #'(defvar fname
+         (dyn-λ (arg ...) body ...))]))
 
 (define-syntax (dyn-λ stx)
   (syntax-parse stx
