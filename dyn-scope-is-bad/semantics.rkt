@@ -24,15 +24,12 @@
 (define dvs (make-parameter (make-hasheq)))
 
 (define (store name v)
-  (hash-set! (dvs) (syntax->datum name) (box v)))
+  (hash-set! (dvs) name (box v)))
 
 (define (internal-fetch name)
-  (hash-ref (dvs) (syntax->datum name)
+  (hash-ref (dvs) name
             (lambda ()
-              (raise-syntax-error
-               (syntax->datum name)
-               "unbound identifier"
-               name))))
+              (error name "undefined"))))
 
 (define (update name v)
   (define loc (internal-fetch name))
@@ -46,12 +43,12 @@
   (syntax-parse stx
     [(_ var:id rhs:expr)
      #'(let ([tmp rhs])
-         (store #'var tmp))]))
+         (store 'var tmp))]))
 
 (define-syntax (deffun stx)
   (syntax-parse stx
     [(_ (fname:id arg:id ...) body:expr ...+)
-     #'(store #'fname
+     #'(store 'fname
               (dyn-λ (arg ...) body ...))]))
 
 (define-syntax (dyn-λ stx)
@@ -60,7 +57,7 @@
      (with-syntax ([(tmp-arg ...)
                     (generate-temporaries #'(arg ...))])
        #'(lambda (tmp-arg ...)
-           (store #'arg tmp-arg)
+           (store 'arg tmp-arg)
            ...
            body ...))]))
 
@@ -72,15 +69,15 @@
 (define-syntax (dyn-set! stx)
   (syntax-parse stx
     ([_ var:id val:expr]
-     #'(update #'var val))))
+     #'(update 'var val))))
 
 (provide (rename-out [handle-id #%top]))
 
 (define-syntax (handle-id stx)
   (syntax-case stx ()
-    [(_ . any)
+    [(_ . var)
      (with-syntax ([stx stx])
-       #'(fetch #'any))]))
+       #'(fetch 'var))]))
 
 (define-syntax (dyn-app stx)
   (syntax-parse stx

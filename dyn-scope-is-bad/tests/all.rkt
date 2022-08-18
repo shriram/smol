@@ -54,3 +54,13 @@
       (+ (fibber (- x 1)) (fibber (- x 2)))))
 
 (test (fibber 5) 5)
+
+; -----
+
+(test/exn
+ (let ((x 1))
+   (+ (let ((f (lambda () x)))
+        (let ((x 2) (y 3))
+          (f)))
+      y))
+ "")
