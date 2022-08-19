@@ -4,8 +4,6 @@
 
 (require smol/hof/semantics)
 
-(require [only-in mzscheme fluid-let])
-
 (provide [except-out [all-from-out smol/hof/semantics]
                      ;defvar
                      ;deffun
@@ -14,24 +12,34 @@
                      let
                      let*
                      set!
-                     #%top])
+                     #%top
+                     #%app])
 (provide defvar deffun)
 (provide [rename-out (dyn-λ λ)
                      (dyn-λ lambda)
                      (dyn-let let)
+                     (dyn-let let*)
                      (dyn-let letrec)
-                     (dyn-let* let*)
+                     (dyn-app #%app)
                      (dyn-set! set!)])
 
-(define dvs (make-hasheq))
+(define dvs (make-parameter (make-hasheq)))
 
 (define (store name v)
-  (hash-set! dvs name v))
+  (hash-set! (dvs) name (box v)))
 
-(define (fetch name)
-  (hash-ref dvs name
+(define (internal-fetch name)
+  (hash-ref (dvs) name
             (lambda ()
               (error name "undefined"))))
+
+(define (update name v)
+  (define loc (internal-fetch name))
+  (set-box! loc v))
+
+(define (fetch name)
+  (define loc (internal-fetch name))
+  (unbox loc))
 
 (define-syntax (defvar stx)
   (syntax-parse stx
@@ -42,8 +50,8 @@
 (define-syntax (deffun stx)
   (syntax-parse stx
     [(_ (fname:id arg:id ...) body:expr ...+)
-     #'(store 'fname
-              (dyn-λ (arg ...) body ...))]))
+     #'(defvar fname
+         (dyn-λ (arg ...) body ...))]))
 
 (define-syntax (dyn-λ stx)
   (syntax-parse stx
@@ -58,12 +66,7 @@
 (define-syntax (dyn-let stx)
   (syntax-parse stx
     ([_ ([var:id val:expr] ...) body:expr ...+]
-     (with-syntax ([(tmp ...)
-                    (generate-temporaries #'(var ...))])
-       #'(let ([tmp val] ...)
-           (store 'var tmp)
-           ...
-           body ...)))))
+     #'(dyn-app (dyn-λ (var ...) body ...) val ...))))
 
 (define-syntax dyn-let*
   (syntax-rules ()
@@ -76,12 +79,18 @@
 (define-syntax (dyn-set! stx)
   (syntax-parse stx
     ([_ var:id val:expr]
-     #'(store 'var val))))
+     #'(update 'var val))))
 
 (provide (rename-out [handle-id #%top]))
 
 (define-syntax (handle-id stx)
   (syntax-case stx ()
-    [(_ . any)
-    (with-syntax ([stx stx])
-      #'(fetch 'any))]))
+    [(_ . var)
+     (with-syntax ([stx stx])
+       #'(fetch 'var))]))
+
+(define-syntax (dyn-app stx)
+  (syntax-parse stx
+    [(_ fun:expr arg:expr ...)
+     #'(parameterize ([dvs (hash-copy (dvs))])
+         (#%app fun arg ...))]))
