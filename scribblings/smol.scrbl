@@ -54,12 +54,12 @@ exotic quoted forms. (If you don't know what these are, ignore them.)
 
 @deftogether[(
 @defproc[(ivec (elem Any) ...) Vec]
-@defproc[(vlen (expr Vec)) Number]
+@defproc[(vec-len (expr Vec)) Number]
 @defproc[(vec-ref (vec-expr Vec) (idx-expr Number)) Any]
 )]{
 The @code{ivec} operation builds an @emph{immutable} vector of the
 elements in @code{elem}. Vector elements need not be of the same
-type. @code{vlen} computes its length, while @code{vec-ref} indexes
+type. @code{vec-len} computes its length, while @code{vec-ref} indexes
 into it (starting from @code{0}).
 }
 
