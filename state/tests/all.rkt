@@ -11,7 +11,7 @@
 (test (left p) "x")
 (test (right p) "y")
 
-(test (vlen p) 2)
+(test (vec-len p) 2)
 (test (pair? p) true)
 (test (pair? (mvec "g" "h")) true)
 

@@ -14,7 +14,7 @@
          let let*
 	 if and or not true false eq? equal?
 	 begin
-         ivec vlen vec-ref
+         ivec vec-len vec-ref
          pair left right pair?
 	 + - * /
 	 zero?
@@ -77,17 +77,17 @@
      (test/pred L (lambda (v) (not (equal~? v R))))]))
 
 (define ivec vector-immutable)
-(define vlen vector-length)
+(define vec-len vector-length)
 (define vec-ref vector-ref)
 
 (define (pair a b)
   (ivec a b))
 (define (left p)
-  (unless (= (vlen p) 2)
+  (unless (= (vec-len p) 2)
     (error 'left "argument must be a pair: ~a" p))
   (vec-ref p 0))
 (define (right p)
-  (unless (= (vlen p) 2)
+  (unless (= (vec-len p) 2)
     (error 'right "argument must be a pair: ~a" p))
   (vec-ref p 1))
-(define (pair? v) (and (vector? v) (= (vlen v) 2)))
+(define (pair? v) (and (vector? v) (= (vec-len v) 2)))
