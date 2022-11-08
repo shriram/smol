@@ -37,3 +37,10 @@
         [x 2])
    (f))
  1)
+
+(test (list 1 2) (list 1 2))
+(test empty (list))
+(test (first (list 1 2)) 1)
+(test (rest (list 1 2)) (list 2))
+(test (empty? (list 1 2)) #f)
+(test (empty? (list)) #t)
