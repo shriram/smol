@@ -8,7 +8,7 @@
 (provide letrec)
 (provide lambda λ)
 (provide map filter foldl foldr)
-(provide empty list)
+(provide empty list first rest empty?)
 (provide (rename-out [checked-cons cons]))
 
 (define (checked-cons f r)
