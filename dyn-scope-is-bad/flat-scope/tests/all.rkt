@@ -1,4 +1,4 @@
-#lang smol/dyn-scope-is-bad
+#lang smol/dyn-scope-is-bad/flat-scope
 
 (print-only-errors #t)
 
@@ -53,18 +53,18 @@
       (if (<= x 0) 0 1)
       (+ (fibber (- x 1)) (fibber (- x 2)))))
 
-(test (fibber 5) 5)
+(test (fibber 5) 1)
 
 ; -----
 
-(test/exn
+(test
  (let ((x 1))
    (+ (let ((f (lambda () x)))
         (let ((x 2) (y 3))
           (f)))
       y))
- "")
- 
+ 5)
+
 ; -----
 
 (test
