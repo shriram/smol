@@ -91,3 +91,5 @@
     (error 'right "argument must be a pair: ~a" p))
   (vec-ref p 1))
 (define (pair? v) (and (vector? v) (= (vec-len v) 2)))
+
+(print-as-expression #f)
