@@ -15,7 +15,3 @@
   (unless (list? r)
     (error 'cons "the second argument must be a list: ~a" r))
   (cons f r))
-
-(provide maybe?)
-(define (maybe?)
-  (>= (random) 0.5))

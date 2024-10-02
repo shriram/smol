@@ -26,3 +26,7 @@
   (unless (= (vec-len p) 2)
     (error 'set-right! "the first argument must be a pair: ~a" p))
   (vector-set! p 1 v))
+
+(provide maybe?)
+(define (maybe?)
+  (>= (random) 0.5))
