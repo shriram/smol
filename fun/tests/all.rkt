@@ -11,6 +11,14 @@
 
 (test (fact 10) 3628800)
 
+
+(deffun (fact-cond n)
+  (cond
+    [(zero? n) 1]
+    [else (* n (fact-cond (- n 1)))]))
+
+(test (fact-cond 10) 3628800)
+
 (deffun (odd? n)
   (if (zero? n)
       false

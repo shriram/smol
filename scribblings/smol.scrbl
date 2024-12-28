@@ -134,7 +134,7 @@ that have the same source term).
 The constructs @code{trace}, @code{untrace},
 	 @code{provide}, @code{all-defined-out},
          @code{let}, @code{let*},
-	 @code{if}, @code{and}, @code{or}, @code{not},
+	 @code{if}, @code{and}, @code{or}, @code{not}, @code{cond},
 	 @code{eq?}, @code{equal?},
 	 @code{begin},
 	 @code{+}, @code{-}, @code{*}, @code{/},

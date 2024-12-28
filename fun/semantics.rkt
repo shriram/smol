@@ -12,7 +12,7 @@
 	 require provide all-defined-out
          defvar deffun
          let let*
-	 if and or not true false eq? equal?
+	 if and or not true false cond else eq? equal?
 	 begin
          ivec vec-len vec-ref
          pair left right pair?
