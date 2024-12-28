@@ -2,4 +2,4 @@
 
 (require "provider.rkt")
 
-new-named-ivec
+(defvar _ new-named-ivec)
