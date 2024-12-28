@@ -64,7 +64,7 @@
           (f)))
       y))
  "")
- 
+
 ; -----
 
 (test
@@ -73,3 +73,11 @@
         [x 2])
    (f))
  2)
+
+; -----
+; shadow built-in name should be allowed
+
+(test
+  (let ([mvec 42])
+     (eq? mvec 42))
+  #t)

@@ -4,16 +4,36 @@
 
 (require smol/hof/semantics)
 
+(provide spy)
 (provide [except-out [all-from-out smol/hof/semantics]
-                     ;defvar
-                     ;deffun
                      lambda λ
                      letrec
                      let
                      let*
                      set!
                      #%top
-                     #%app])
+                     #%app
+
+                     ; -- built-in functions --
+
+                     ;; from smol/hof
+                     map filter foldl foldr
+                     empty list first rest empty?
+                     cons
+
+                     ;; from smol/state
+                     mvec vec-set!
+                     mpair set-left! set-right!
+
+                     ;; from smol/fun
+                     true false eq? equal?
+                     ivec vec-len vec-ref
+                     pair left right pair?
+                     + - * /
+                     zero?
+                     < <= > >=
+                     ++ string=?
+                     ])
 (provide defvar deffun)
 (provide [rename-out (dyn-λ λ)
                      (dyn-λ lambda)
@@ -94,3 +114,27 @@
     [(_ fun:expr arg:expr ...)
      #'(parameterize ([dvs (hash-copy (dvs))])
          (#%app fun arg ...))]))
+
+(define-syntax-rule (define-builtin* x ...)
+  (begin
+    (store 'x x)
+    ...))
+
+;; from smol/hof
+(define-builtin* map filter foldl foldr)
+(define-builtin* empty list first rest empty?)
+(define-builtin* cons)
+
+;; from smol/state
+(define-builtin* mvec vec-set!)
+(define-builtin* mpair set-left! set-right!)
+
+;; from smol/fun
+(define-builtin*
+  true false eq? equal?
+  ivec vec-len vec-ref
+  pair left right pair?
+  + - * /
+  zero?
+  < <= > >=
+  ++ string=?)
