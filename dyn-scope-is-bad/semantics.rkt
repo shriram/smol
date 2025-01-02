@@ -31,7 +31,7 @@
                      pair left right pair?
                      + - * /
                      zero?
-                     < <= > >=
+                     = < <= > >=
                      ++ string=?
                      ])
 (provide defvar deffun)
@@ -136,5 +136,5 @@
   pair left right pair?
   + - * /
   zero?
-  < <= > >=
+  = < <= > >=
   ++ string=?)

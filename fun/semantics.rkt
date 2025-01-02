@@ -18,7 +18,7 @@
          pair left right pair?
 	 + - * /
 	 zero?
-	 < <= > >=
+	 = < <= > >=
 	 ++ string=?
          spy)
 (provide [except-out (all-from-out plai) equal~?]

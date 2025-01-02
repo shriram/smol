@@ -139,7 +139,7 @@ The constructs @code{trace}, @code{untrace},
 	 @code{begin},
 	 @code{+}, @code{-}, @code{*}, @code{/},
 	 @code{zero?},
-	 @code{<}, @code{<=}, @code{>}, @code{>=},
+	 @code{=}, @code{<}, @code{<=}, @code{>}, @code{>=},
 	 and
 	 @code{string=?}
 are all inherited directly from Racket and behave exactly as they do
