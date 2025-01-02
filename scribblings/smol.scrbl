@@ -143,7 +143,7 @@ The constructs @code{trace}, @code{untrace},
 	 @code{string=?},
 	 @code{print},
 	 and
-	 @{error}
+	 @code{error}
 are all inherited directly from Racket and behave exactly as they do
 there.
 
