@@ -18,7 +18,7 @@
    pair left right pair?
 	 + - * /
 	 zero?
-	 < <= > >=
+	 = < <= > >=
 	 ++ string=?
    spy
    print

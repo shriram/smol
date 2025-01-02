@@ -139,7 +139,7 @@ The constructs @code{trace}, @code{untrace},
 	 @code{begin},
 	 @code{+}, @code{-}, @code{*}, @code{/},
 	 @code{zero?},
-	 @code{<}, @code{<=}, @code{>}, @code{>=},
+	 @code{=}, @code{<}, @code{<=}, @code{>}, @code{>=},
 	 @code{string=?},
 	 @code{print},
 	 and
