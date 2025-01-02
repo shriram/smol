@@ -10,17 +10,19 @@
 (provide #%module-begin #%top-interaction
 	 #%datum #%top
 	 require provide all-defined-out
-         defvar deffun
-         let let*
+   defvar deffun
+   let let*
 	 if and or not true false cond else eq? equal?
 	 begin
-         ivec vec-len vec-ref
-         pair left right pair?
+   ivec vec-len vec-ref
+   pair left right pair?
 	 + - * /
 	 zero?
 	 < <= > >=
 	 ++ string=?
-         spy)
+   spy
+   print
+   error)
 (provide [except-out (all-from-out plai) equal~?]
 	 [rename-out (my-app #%app)]
          test/not)

@@ -60,3 +60,7 @@
 
 (test/exn (left (ivec 1 2 3)) "pair")
 (test/exn (right (ivec 1 2 3)) "pair")
+
+(print "printing is working")
+
+(test/exn (error "my error") "my error")
